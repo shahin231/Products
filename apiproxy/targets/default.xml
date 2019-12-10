@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="default">
+    <Description/>
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <Name>AM-set-target-response-log-variables</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
+    <FaultRules>
+        <FaultRule name="BackendServerErrorRule">
+            <Step>
+                <Name>Assign-Message-Backend-Error-401</Name>
+                <!--step executed when status code is 401-->
+                <Condition>(message.status.code = "404")</Condition>
+            </Step>
+            <!--ensures this rule is executed when the target server response != 200-->
+            <Condition>(message.status.code != "200")</Condition>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow name="PreFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>AM-set-target-response-log-variables</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>AM-set-target-request-log-variables</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PostFlow>
+    <Flows/>
+    <HTTPTargetConnection>
+        <Properties/>
+        <SSLInfo>
+            <Enabled>true</Enabled>
+        </SSLInfo>
+        <LoadBalancer>
+            <Server name="TS-Product"/>
+        </LoadBalancer>
+        <Path>/db</Path>
+    </HTTPTargetConnection>
+</TargetEndpoint>

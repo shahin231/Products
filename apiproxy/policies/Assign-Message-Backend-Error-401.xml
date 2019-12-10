@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Message-Backend-Error-401">
+    <DisplayName>Assign-Message-Backend-Error-401</DisplayName>
+    <Properties/>
+    <Set>
+        <StatusCode>404</StatusCode>
+        <ReasonPhrase>Bad Request</ReasonPhrase>
+        <Payload contentType="application/json">
+              { "errorCode": "404.01",
+                "errorMessage":"Invalid request. The resource path does not exist."}
+      </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

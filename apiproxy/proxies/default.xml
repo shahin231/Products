@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <Description/>
+    <DefaultFaultRule name="DefaultFaultRule">
+        <Step>
+            <Name>AM-set-client-response-log-variables</Name>
+        </Step>
+        <Step>
+            <Name>JS-calculate-latencies</Name>
+        </Step>
+        <AlwaysEnforce>true</AlwaysEnforce>
+    </DefaultFaultRule>
+    <FaultRules>
+        <FaultRule name="InvalidApiKeyRule">
+            <Step>
+                <Name>Assign-Message-Invalid-API-Key</Name>
+            </Step>
+            <Condition>(fault.name = "FailedToResolveAPIKey")</Condition>
+        </FaultRule>
+    </FaultRules>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>FC-RequestValidation</Name>
+            </Step>
+            <Step>
+                <Name>KV-get-log-parameters</Name>
+            </Step>
+            <Step>
+                <Name>AM-set-client-request-log-variables</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response>
+            <Step>
+                <Name>AM-set-client-response-log-variables</Name>
+            </Step>
+            <Step>
+                <Name>JS-calculate-latencies</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <PostClientFlow>
+        <Response>
+            <Step>
+                <Name>ML-log-to-loggly</Name>
+            </Step>
+        </Response>
+    </PostClientFlow>
+    <Flows>
+        <Flow name="Get All Products">
+            <Description>Get All Product Details</Description>
+            <Request>
+                <Step>
+                    <Name>RC-cacheProducts</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                    <Name>RC-cacheProducts</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/products") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Get Product">
+            <Description>Product Detail</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/*") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="Create New Product">
+            <Description>Create new product</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/products") and (request.verb = "POST")</Condition>
+        </Flow>
+        <Flow name="Update Product">
+            <Description>Update Product</Description>
+            <Request>
+                <Step>
+                    <Name>KVM-Get-Org-Credentials</Name>
+                </Step>
+                <Step>
+                    <Name>BA-Encode-Credentials</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/*") and (request.verb = "PUT")</Condition>
+        </Flow>
+        <Flow name="Get Product Availability">
+            <Description>Product Availability</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/products/*/availability") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="OptionsPreFlight">
+            <Description>Adding CORS Support</Description>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>Add-CORS</Name>
+                </Step>
+            </Response>
+            <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
+        </Flow>
+    </Flows>
+    <HTTPProxyConnection>
+        <BasePath>/v1</BasePath>
+        <Properties/>
+        <VirtualHost>default</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name="NoRoute">
+        <Condition>request.verb == "OPTIONS" AND request.header.origin != null
+            AND request.header.Access-Control-Request-Method != null</Condition>
+    </RouteRule>
+    <RouteRule name="default">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+</ProxyEndpoint>

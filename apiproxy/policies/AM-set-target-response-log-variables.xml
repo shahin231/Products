@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-set-target-response-log-variables">
+    <DisplayName>AM-set-target-response-log-variables</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>log.target.request.url</Name>
+        <Ref>request.url</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.target.response.code</Name>
+        <Ref>message.status.code</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.target.response.reason</Name>
+        <Ref>message.reason.phrase</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.target.response.content</Name>
+        <Ref>response.content</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

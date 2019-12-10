@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-set-client-request-log-variables">
+    <DisplayName>AM-set-client-request-log-variables</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>log.request.verb</Name>
+        <Ref>request.verb</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.client.scheme</Name>
+        <Ref>client.scheme</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.request.header.host</Name>
+        <Ref>request.header.host</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.request.uri</Name>
+        <Ref>request.uri</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.request.querystring</Name>
+        <Ref>request.querystring</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.request.content</Name>
+        <Ref>request.content</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

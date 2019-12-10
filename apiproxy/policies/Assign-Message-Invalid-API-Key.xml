@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="Assign-Message-Invalid-API-Key">
+    <DisplayName>Assign-Message-Invalid-API-Key</DisplayName>
+    <Properties/>
+    <Set>
+        <Payload contentType="application/json">
+              { "errorCode": "401.01",
+                "errorMessage":"Invalid API Key or the API Key was not included in the request. Please include the API key as a query parameter named apikey."}
+      </Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>

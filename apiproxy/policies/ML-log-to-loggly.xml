@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MessageLogging async="false" continueOnError="false" enabled="true" name="ML-log-to-loggly">
+    <DisplayName>ML-log-to-loggly</DisplayName>
+    <Syslog>
+        <Message variablePrefix="%" variableSuffix="#">[%private.logging_key#@41058 tag="apigee-edge-syslog" tag="%organization.name#" tag="%environment.name#" ]
+        {
+            "messageId":"%messageid#",
+            "environmentName":"%environment.name#",
+            "requestVerb":"%log.request.verb#",
+            "requestScheme": "%log.client.scheme#",
+            "requestHost":"%log.request.header.host#",
+            "requestUri":"%log.request.uri#",
+            "requestUrl":"%log.client.scheme#://%log.request.header.host#%log.request.uri#",
+
+            "requestReceivedStartTimestamp":"%client.received.start.timestamp#",
+            "requestReceivedEndTimestamp":"%client.received.end.timestamp#",
+
+            "targetSentStartTimestamp":"%target.sent.start.timestamp#",
+            "targetSentEndTimestamp":"%target.sent.end.timestamp#",
+            "targetReceivedStartTimestamp":"%target.received.start.timestamp#",
+            "targetReceivedEndTimestamp":"%target.received.end.timestamp#",
+
+            "requestSentStartTimestamp":"%client.sent.start.timestamp#",
+            "requestSentEndTimestamp":"%client.sent.end.timestamp#",
+
+            "latencyTotal":%log.latency.request.total#,
+            "latencyTarget":%log.latency.target#,
+            "latencyProxy":%log.latency.proxy#,
+            "latencyHeader":%response.header.X-Apigee.target-latency#,
+
+            "statusCode":%message.status.code#,
+            "statusReason":"%message.reason.phrase#",
+
+            "targetName":"%target.name#",
+            "targetVerb":"%log.target.request.verb#",
+            "targetUrl":"%log.target.request.url#",
+
+            "requestContent":[%log.request.content#],
+            "targetRequestContent":[%log.target.request.content#],
+            "targetResponseContent":[%log.target.response.content#],
+            "responseContent":[%log.response.content#]
+        }
+        </Message>
+        <Host>logs-01.loggly.com</Host>
+        <Port>514</Port>
+        <FormatMessage>true</FormatMessage>
+    </Syslog>
+</MessageLogging>

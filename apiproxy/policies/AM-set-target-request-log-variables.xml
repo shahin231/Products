@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-set-target-request-log-variables">
+    <DisplayName>AM-set-target-request-log-variables</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>log.target.request.verb</Name>
+        <Ref>request.verb</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.target.request.header.host</Name>
+        <Ref>request.header.host</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.target.request.url</Name>
+        <Ref>request.url</Ref>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>log.target.request.content</Name>
+        <Ref>request.content</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

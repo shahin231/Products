@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-set-client-response-log-variables">
+    <DisplayName>AM-set-client-response-log-variables</DisplayName>
+    <Properties/>
+    <AssignVariable>
+        <Name>log.response.content</Name>
+        <Ref>response.content</Ref>
+    </AssignVariable>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>
