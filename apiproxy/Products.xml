@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="3" name="Products">
+<APIProxy revision="4" name="Products">
     <Basepaths>/v1</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1568959238525</CreatedAt>
+    <CreatedAt>1575998121335</CreatedAt>
     <CreatedBy>shahinbsns@gmail.com</CreatedBy>
     <Description>Products Information</Description>
     <DisplayName>Products</DisplayName>
-    <LastModifiedAt>1570264662901</LastModifiedAt>
+    <LastModifiedAt>1575998121335</LastModifiedAt>
     <LastModifiedBy>shahinbsns@gmail.com</LastModifiedBy>
-    <ManifestVersion>SHA-512:94a461abcb300de79c07c58d70e7709ef28fc7c076be25da7dd23ffd616af8d2e31909fa8dce23e8697d7f595a4ee58ca3224297958c33f75aa5b709e0c973be</ManifestVersion>
+    <ManifestVersion>SHA-512:3c2a864dff2965a18bef45bbb8e37812a41fefed082c0edf51fe8580677fb1cd5eed5adc1fb61c93967d6e71ddb31377baac60d4ff17c0fd482ea886b1a2d62c</ManifestVersion>
     <Policies>
         <Policy>AM-set-client-request-log-variables</Policy>
         <Policy>AM-set-client-response-log-variables</Policy>
